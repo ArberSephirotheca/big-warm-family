@@ -7,8 +7,8 @@ python src/run.py
 ```
 
 ## TODO
-[X] Add comments to db
+- [ ] Add comments to db
 
-[X] add a better frontend
+- [ ] add a better frontend
 
-[X] get avids from specific tag
+- [ ] get avids from specific tag
