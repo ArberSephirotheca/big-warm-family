@@ -1,5 +1,5 @@
-import crawler.video
-import crawler.comment
+import utility.video
+import utility.comment
 
-c = crawler.comment.comment_crawler()
+c = utility.comment.comment_crawler()
 c.get_comments_info(334001342)
