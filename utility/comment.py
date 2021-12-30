@@ -31,8 +31,13 @@ class Comment():
             for reply in replies:
                 user_name = reply['member']['uname']
                 comment = reply['content']['message']
+
+                
                 replies_content[user_name] = comment
             i += 1
 
     def get_users(self):
         return self.comments.keys()
+    
+    def get_comments(self):
+        return self.comments
