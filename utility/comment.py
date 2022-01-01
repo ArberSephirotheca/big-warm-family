@@ -30,10 +30,11 @@ class Comment():
                 return
             for reply in replies:
                 user_name = reply['member']['uname']
+                uid = reply['mid']
                 comment = reply['content']['message']
-
-                
-                replies_content[user_name] = comment
+                like =  reply['like']
+                date = reply['ctime']
+                replies_content[uid] = {'uname':user_name, 'avid' : avid, 'comment' : comment, 'like' : like, 'date' : date}
             i += 1
 
     def get_users(self):
