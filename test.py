@@ -1,4 +1,4 @@
-import db
+import utility.db as db
 from utility.comment import Comment
 from utility.video import Video
 
