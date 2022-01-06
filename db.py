@@ -12,6 +12,10 @@ class Mongo():
     def create_comment_index(self):
         col = self.db["comments"]
         col.create_index([("uid", pymongo.ASCENDING),("date", pymongo.DESCENDING)])
+    
+    def create_video_index(self):
+        col = self.db["videos"]
+        col.create_index([("avid", pymongo.ASCENDING)])
 
     def insert_comments_info(self, comments):
         col = self.db["comments"]
@@ -25,9 +29,23 @@ class Mongo():
                 'date': comments[key]['date']
             })
     
-    def find_comments_info(self, user_name):
+    def insert_video_info(self, video):
+        col = self.db["videos"]
+
+        col.insert_one({
+            'avid' : video
+        })
+
+    def find_comments_by_uname(self, user_name):
         col = self.db['comments']
         found_comments = []
         for comment in col.find({'uname' : user_name}):
+            found_comments.append(comment)
+        return found_comments
+    
+    def find_comment_by_uid(self, uid):
+        col = self.db['comments']
+        found_comments = []
+        for comment in col.find({'uid': uid}):
             found_comments.append(comment)
         return found_comments
