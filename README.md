@@ -1,6 +1,6 @@
 # big-warm-family
 
-## Delopy
+## Deploy
 ```
 export PYTHONPATH=.
 python src/run.py
