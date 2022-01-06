@@ -8,6 +8,7 @@ defineProps({
 const count = ref(0)
 </script>
 
+
 <template>
   <h1>{{ msg }}</h1>
 
@@ -27,11 +28,7 @@ const count = ref(0)
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
  -->
-<div id="v-model-basic" class="demo">
-  <p>avid: <input v-model="message" placeholder="" /> </p>
-</div>
 
-  <button type="button" @click="count++">submit</button>
   <button type="button" @click="count++">clear</button>
 </template>
 

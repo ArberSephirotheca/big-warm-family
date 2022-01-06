@@ -5,17 +5,21 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Big-Warm-Family" />
+  <div v-bind:id="event-handling">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+  </div>
 </template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-family: sans-serif;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  padding: 20px 30px;
+  margin-top: 1em;
+  margin-bottom: 40px;
+  user-select: none;
+  overflow-x: auto;
 }
 </style>
