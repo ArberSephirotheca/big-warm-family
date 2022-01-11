@@ -1,7 +1,9 @@
 import utility.db as db
 from utility.comment import Comment
 from utility.video import Video
+from utility.crawler import Crawl
 
+''''
 c = Comment()
 c.get_comments_info(334001342)
 v = Video()
@@ -13,3 +15,7 @@ family.insert_comments_info(c.comments)
 comments = family.find_comments_info('东北爱乐人')
 for comment in comments:
     print(comment)
+'''
+c = Crawl()
+c.add_vup("小可学妹")
+c.crwal()
