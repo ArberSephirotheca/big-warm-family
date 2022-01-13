@@ -28,8 +28,8 @@ class Crawl():
 
                 if len(vlist) == 0:
                     print("reach end of video lists")
-                    return  self.vlists
-
+                    return
+                
                 for video in vlist:
                     aid = video['aid']
                     self.vlists[uid].append(aid)             
@@ -51,8 +51,16 @@ class Crawl():
 
                 if len(vlist) == 0:
                     print("reach end of video lists")
-                    return self.vlists[uid]
+                    return
 
                 for video in vlist:
                     aid = video['aid']
                     self.vlists[uid].append(aid)
+                
+                pn += 1
+                    
+    def get_all_vlists(self):
+        return self.vlists
+    
+    def get_one_vlist(self, uid):
+        return self.vlists[uid]
