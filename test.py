@@ -17,5 +17,6 @@ for comment in comments:
     print(comment)
 '''
 c = Crawl()
-c.add_vup("小可学妹")
-c.crwal()
+c.add_vup(1663853)
+c.crawl_one_vlists(1663853)
+print(c.get_one_vlist(1663853))

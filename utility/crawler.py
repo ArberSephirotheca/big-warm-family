@@ -9,21 +9,23 @@ class Crawl():
     
     def add_vup(self, uid):
         self.vups.append(uid)
+        self.vlists[uid] = []
 
     def crawl_all_vlists(self):
         for uid in self.vups:
             pn = 1
             while True:
                 response = requests.get(url=user_posts_url, params={'mid': uid, 'pn': pn, 'ps': 10})
-                code = response['code']
+                content = response.json()
+                code = content['code']
 
                 if code != 0:
                     print("error code %d", code)
-                    message = response['message']
+                    message = content['message']
                     print(message)
                     return self.vlists
 
-                data = response['data']
+                data = content['data']
                 vlist = data['list']['vlist']
 
                 if len(vlist) == 0:
@@ -37,18 +39,18 @@ class Crawl():
     def crawl_one_vlists(self, uid):
         pn = 1
         while True:
-                response = requests.get(url=user_posts_url, params={'mid': uid, 'pn': pn, 'ps': 10})
-                code = response['code']
-
+                response = requests.get(url=user_posts_url, params={'mid': uid,'pn': pn, 'ps': 10})
+                content =response.json()
+                code = content['code']
                 if code != 0:
                     print("error code %d", code)
-                    message = response['message']
+                    message = content['message']
                     print(message)
                     return self.vlists[uid]
 
-                data = response['data']
+                data = content['data']
                 vlist = data['list']['vlist']
-
+                
                 if len(vlist) == 0:
                     print("reach end of video lists")
                     return
