@@ -1,17 +1,32 @@
 import requests
 
 user_posts_url = 'http://api.bilibili.com/x/space/arc/search'
+user_info_url = 'http://api.bilibili.com/x/space/acc/info'
 
 class Crawl():
     def __init__(self):
-        self.vups = []
+        self.vups = {}
         self.vlists = {}
     
     def add_vup(self, uid):
         self.vups.append(uid)
-        self.vlists[uid] = []
+        response = requests.get(url = user_info_url, params={'mid' : uid})
+        content = response.json()
+        code = content['code']
 
-    def crawl_all_vlists(self):
+        if code != 0:
+            print("error code %d", code)
+            message = content['message']
+            print(message)
+            return self.vlists
+        
+        data = content['data']
+        name = data['name']
+        avatar = data['face']
+        space = 'bilibili.com'+uid
+        self.vlists[uid] = {'uid': uid, 'name': name, 'avatar': avatar, 'space' : space}
+
+    def get_all_vlists(self):
         for uid in self.vups:
             pn = 1
             while True:
@@ -36,7 +51,10 @@ class Crawl():
                     aid = video['aid']
                     self.vlists[uid].append(aid)             
                     
-    def crawl_one_vlists(self, uid):
+    def get_one_vlists(self, uid):
+        if uid not in self.vups:
+            print("ERROR unknown vup\n")
+            return
         pn = 1
         while True:
                 response = requests.get(url=user_posts_url, params={'mid': uid,'pn': pn, 'ps': 10})
@@ -66,3 +84,6 @@ class Crawl():
     
     def get_one_vlist(self, uid):
         return self.vlists[uid]
+    
+    def get_one_info(self, uid):
+        return self.vups[uid]

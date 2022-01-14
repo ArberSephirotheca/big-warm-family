@@ -29,7 +29,7 @@ class Mongo():
                 'date': comments[key]['date']
             })
     
-    def insert_video_info(self, videos):
+    def insert_videos_info(self, videos):
         col = self.db["videos"]
         for avid in videos:
             col.insert_one({
@@ -39,6 +39,16 @@ class Mongo():
                 'vup_name' : videos['avid']['vup_name'],
                 'pubdate' : videos['avid']['pubdate'],
                 'keywords' : videos['avid']['keywords']
+            })
+    
+    def insert_vup_info(self, vups):
+        col = self.db["vups"]
+        for vup in vups:
+            col.insert_one({
+                'uid' : vup['uid'],
+                'name': vup['name'],
+                'avatar' : vup['avatar'],
+                'space' : vup['space']
             })
 
     def find_comments_by_uname(self, user_name):
